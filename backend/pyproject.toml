@@ -13,6 +13,9 @@ dependencies = [
     "uvicorn[standard]",
     "pydantic-settings",
     "structlog",
+    "sqlalchemy[asyncio]",
+    "asyncpg",
+    "alembic",
 ]
 
 [project.optional-dependencies]
