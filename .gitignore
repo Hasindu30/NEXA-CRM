@@ -1,0 +1,13 @@
+# .gitignore
+node_modules/
+__pycache__/
+*.pyc
+venv/
+env/
+.env
+.next/
+.idea/
+.vscode/
+dist/
+build/
+*.egg-info/
