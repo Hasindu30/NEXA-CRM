@@ -20,6 +20,8 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 from app.db.base import Base
+import app.modules.users.model  # noqa
+import app.modules.workspaces.model  # noqa
 target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
