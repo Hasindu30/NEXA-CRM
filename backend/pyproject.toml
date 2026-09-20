@@ -16,6 +16,8 @@ dependencies = [
     "sqlalchemy[asyncio]",
     "asyncpg",
     "alembic",
+    "argon2-cffi",
+    "pyjwt",
 ]
 
 [project.optional-dependencies]
