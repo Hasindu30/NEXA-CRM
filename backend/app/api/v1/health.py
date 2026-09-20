@@ -19,7 +19,7 @@ async def readiness_check(session: AsyncSession = Depends(get_db_session)):
     try:
         await session.execute(text("SELECT 1"))
         return {"status": "ready", "database": "ok"}
-    except SQLAlchemyError as e:
+    except (SQLAlchemyError, OSError) as e:
         logger.exception("Database readiness check failed", exc_info=e)
         return JSONResponse(
             status_code=503,
