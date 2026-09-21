@@ -6,14 +6,16 @@ from app.core.logging import setup_logging
 from app.core.exceptions import setup_exception_handlers
 from app.api.v1.health import router as health_router
 from app.modules.auth.router import router as auth_router
+from app.modules.workspaces.router import router as workspaces_router
 from app.db.session import engine
 
 setup_logging()
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    # Startup: setup resources (e.g., DB pool) if needed
     yield
-    # Shutdown
+    # Shutdown: teardown resources (e.g., close DB engine)
     await engine.dispose()
 
 app = FastAPI(
@@ -36,3 +38,4 @@ setup_exception_handlers(app)
 
 app.include_router(health_router, prefix=settings.api_v1_str)
 app.include_router(auth_router, prefix=settings.api_v1_str)
+app.include_router(workspaces_router, prefix=settings.api_v1_str)
