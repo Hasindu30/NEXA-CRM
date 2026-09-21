@@ -17,3 +17,18 @@ class WorkspaceResponse(BaseModel):
 
 class WorkspaceListResponse(BaseModel):
     data: list[WorkspaceResponse]
+
+class WorkspaceMemberResponse(BaseModel):
+    user_id: UUID
+    email: str
+    role: str
+    joined_at: datetime
+    
+class WorkspaceMemberListResponse(BaseModel):
+    data: list[WorkspaceMemberResponse]
+
+class AddWorkspaceMemberRequest(BaseModel):
+    email: str
+
+class ChangeWorkspaceMemberRoleRequest(BaseModel):
+    role: str
