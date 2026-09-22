@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
-import { apiClient, ApiError } from '@/lib/api';
+import { apiClient, ApiError, formatApiError } from '@/lib/api';
 import { TokenResponse } from '@/types/auth';
 
 export default function LoginPage() {
@@ -36,11 +36,7 @@ export default function LoginPage() {
       login(data);
       router.push('/w'); // Bootstrap route
     } catch (err: any) {
-      if (err instanceof ApiError) {
-        setError(err.data?.detail || err.message);
-      } else {
-        setError('An unexpected error occurred');
-      }
+      setError(formatApiError(err));
     } finally {
       setIsSubmitting(false);
     }

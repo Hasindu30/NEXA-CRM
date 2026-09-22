@@ -5,12 +5,24 @@ export class ApiError extends Error {
     public status: number,
     public data: ApiErrorData | null
   ) {
-    const message = typeof data?.detail === 'string' 
-      ? data.detail 
-      : data?.message || `API Error: ${status}`;
+    let message = `API Error: ${status}`;
+    if (Array.isArray(data?.detail)) {
+      message = data.detail.map(e => e.msg).join(', ');
+    } else if (typeof data?.detail === 'string') {
+      message = data.detail;
+    } else if (data?.message) {
+      message = data.message;
+    }
     super(message);
     this.name = 'ApiError';
   }
+}
+
+export function formatApiError(err: any): string {
+  if (err instanceof ApiError) {
+    return err.message;
+  }
+  return err?.message || 'An unexpected error occurred';
 }
 
 let currentAccessToken: string | null = null;

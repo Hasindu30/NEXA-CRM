@@ -23,6 +23,8 @@ from app.db.base import Base
 import app.modules.users.model  # noqa
 import app.modules.workspaces.model  # noqa
 import app.modules.auth.model  # noqa
+import app.modules.companies.model  # noqa
+import app.modules.people.model  # noqa
 target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,

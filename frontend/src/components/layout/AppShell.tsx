@@ -15,8 +15,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
   const navItems = [
     { name: 'Home', href: `/w/${workspace.slug}` },
-    { name: 'People', href: `/w/${workspace.slug}/people`, placeholder: true },
-    { name: 'Companies', href: `/w/${workspace.slug}/companies`, placeholder: true },
+    { name: 'People', href: `/w/${workspace.slug}/people` },
+    { name: 'Companies', href: `/w/${workspace.slug}/companies` },
     { name: 'Deals', href: `/w/${workspace.slug}/deals`, placeholder: true },
     { name: 'Settings', href: `/w/${workspace.slug}/settings/members` },
   ];

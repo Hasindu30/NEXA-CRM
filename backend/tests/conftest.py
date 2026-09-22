@@ -22,13 +22,14 @@ async def setup_test_db():
     import subprocess
     
     # Run migrations in a subprocess to avoid asyncpg loop-caching bugs across asyncio.run()
+    import sys
     subprocess.run(
-        ["alembic", "downgrade", "base"], 
+        [sys.executable, "-m", "alembic", "downgrade", "base"], 
         check=True, 
         env={**os.environ, "DATABASE_URL": settings.test_database_url}
     )
     subprocess.run(
-        ["alembic", "upgrade", "head"], 
+        [sys.executable, "-m", "alembic", "upgrade", "head"], 
         check=True, 
         env={**os.environ, "DATABASE_URL": settings.test_database_url}
     )

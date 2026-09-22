@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { apiClient, ApiError } from '@/lib/api';
+import { apiClient, ApiError, formatApiError } from '@/lib/api';
 import { Workspace } from '@/types/workspace';
 import { useWorkspace } from '@/hooks/useWorkspace';
 import { useAuth } from '@/hooks/useAuth';
@@ -35,11 +35,7 @@ export default function CreateWorkspacePage() {
       await refreshWorkspaces();
       router.push(`/w/${data.slug}`);
     } catch (err: any) {
-      if (err instanceof ApiError) {
-        setError(err.data?.detail || err.message);
-      } else {
-        setError('An unexpected error occurred');
-      }
+      setError(formatApiError(err));
     } finally {
       setIsSubmitting(false);
     }
